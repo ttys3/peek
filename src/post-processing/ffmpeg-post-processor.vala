@@ -90,8 +90,8 @@ namespace Peek.PostProcessing {
         argv.append_val ("-i");
         argv.append_val (palette_file.get_path ());
 
-        argv.append_val ("-filter_complex");
-        argv.append_val ("fps=%d,paletteuse".printf (config.framerate));
+        argv.append_val ("-lavfi");
+        argv.append_val ("fps=%d,paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle".printf (config.framerate));
 
         if (config.output_format == OutputFormat.APNG) {
           argv.append_val ("-plays");
